@@ -1,1 +1,1 @@
-# Django-Project-Os
+# Django-SJF Non-Preemptive
