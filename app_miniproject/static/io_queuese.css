@@ -1,0 +1,23 @@
+#io{
+    margin: 10px 10px 10px 10px;
+    background-color: rgba(255, 255, 255, 0.815);
+    padding: 10px;
+    grid-column: 2/3;
+}
+
+.box{
+    display: flex;
+    justify-content: space-around;
+}
+
+.box table{
+    margin:0px 20px 0px 20px;
+}
+
+.box table td{
+    text-align: center;
+}
+
+.box table th{
+    text-align: center;
+}

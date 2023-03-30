@@ -1,0 +1,41 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block edit_title %}
+    Processing
+{% endblock %}
+
+{% block content %}
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+    <!-- end Css -->
+
+    <div id="PCB">
+        <div class="block1">
+            {% include 'non_sjf.html' %}
+        </div>
+        <div class="block2">
+            {% include 'ready_queue.html' %}
+            {% include 'io_queue.html' %}
+        </div>
+    </div>
+        
+    <script>
+        
+        function refreshTime() {
+        $.ajax({
+          url: "{% url 'time' %}",
+          success: function (data) {
+            console.log("success function called");
+            $('#PCB').html(data);
+          }
+        });
+      }
+      
+      $( document ).ready(function () {
+        console.log("setting interval");
+            setTimeout(refreshTime,2000);
+      });
+    </script>
+    
+{% endblock %}

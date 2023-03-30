@@ -1,0 +1,16 @@
+#PDB{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+.block1{
+    grid-row: 1/2;
+}
+.block2{
+    display: grid;
+    grid-row: 2/3;
+    grid-template-columns: auto auto;
+}
+
+
+

@@ -1,0 +1,36 @@
+body{
+    /* background-color: rgb(0,0,0,0.85);  */
+    background: linear-gradient(120deg, rgb(0,0,0), rgb(0,0,0,0.7)) fixed;
+}
+.container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    margin-top:10px;
+    padding: 10px;
+    width: 50%;
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+}
+.container #mycom{
+    background-color: rgb(0,0,0,0.8); 
+    text-align: center;
+    color: rgb(255,255,255);
+    transition: transform .2s;
+    width: 80%;
+}
+.container #mycom:hover{
+    transform: scale(1.05);
+}
+.container .power{
+    transition: transform .2s;
+}
+.container .power:hover{
+    transform: scale(1.05);
+}
+
+.container .power a{
+    width: 80%;
+}

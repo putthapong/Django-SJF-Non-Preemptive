@@ -1,0 +1,15 @@
+#ready{
+    margin: 10px 10px 10px 10px;
+    background-color: rgba(255, 255, 255, 0.815);
+    padding: 10px;
+    grid-column: 1/2;
+}
+
+table td{
+    text-align: center;
+}
+
+table th{
+    text-align: center;
+}
+

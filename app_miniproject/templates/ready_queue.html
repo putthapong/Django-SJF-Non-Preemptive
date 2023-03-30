@@ -1,0 +1,36 @@
+{% load static %}
+
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'ready_queuese.css' %}">
+    <!-- end Css -->
+
+    <div id="ready">
+        <h2>Ready Queue</h2>
+        <hr style="width: 100%;">
+        <table class="table table-bordered" style="background-color: white; width: 100%;">
+            <thead>
+                <tr>
+                <th scope="col" colspan="2">Process In Ready Queue</th>              
+                </tr>
+                <tr>
+                <th scope="col" colspan="1">ID</th>
+                <th scope="col" colspan="1">Burst Time - Execue Time</th>              
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in ready_queue %}
+                    <tr>      
+                    {% if data.State != 'Runing' %} 
+                        <td>
+                            {{data.ID}}
+                        </td> 
+                        <td>
+                            {{data.BE}}
+                        </td>           
+                    {% endif %}      
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+        
+    </div>

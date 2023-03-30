@@ -1,0 +1,30 @@
+#Multi{
+    margin: 10px 10px 10px 10px;
+    background-color: rgba(255, 255, 255, 0.815);
+    padding: 10px;
+}
+
+#Multi tr{
+    text-align: center;
+}
+
+.headtable{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+
+.headtable .names{
+    grid-column: 1/2;
+    /* background-color: aquamarine; */
+}
+
+.headtable .addprocess{
+    grid-column: 3/4;
+    /* background-color: rgb(5, 138, 93); */
+}
+
+.addprocess{
+    display: inline-flex;
+}

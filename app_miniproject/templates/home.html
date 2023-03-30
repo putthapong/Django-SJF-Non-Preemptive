@@ -1,0 +1,23 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block edit_title %}
+    Os
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+{% block content %}
+    <div class="container">
+        <center>
+            <div id="mycom" class="alert alert-secondary fs-1" role="alert">
+                My Computer
+            </div>
+            <div class="power">
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Submit" class="btn btn-secondary fs-1">
+                </form>
+            </div>
+            <!-- {{data}} -->
+        </center>
+    </div>
+{% endblock %}

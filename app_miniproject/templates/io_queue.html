@@ -1,0 +1,60 @@
+{% load static %}
+
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'io_queuese.css' %}">
+    <!-- end Css -->
+
+    <div id="io">
+        <h2>I/O Queue</h2>
+        <hr>
+        {% if programe_counter_io != None %}
+        <span>IO Process : ID {{programe_counter_io}}</span>
+        {% else %}
+        <span>IO Process : ID Null</span>
+        {% endif %}
+        <hr>
+        <div class="box">
+            <table class="table table-bordered" style="background-color: white;">
+                <thead>
+                    <tr>
+                    <th scope="col" colspan="2">CD QUEUE</th>              
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if programe_counter != None %}
+                    <tr>
+                        <td>
+                            ID
+                        </td>
+                        <td>
+                            <form action="{% url 'add_io' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% for _,data in io_queue.items %}
+                    <tr>
+                        <td>
+                            {{data.ID}}
+                        </td>
+                        {% if data.ID == programe_counter_io %}
+                        <td style="background-color: green;">
+                            <form action="{% url 'close_io' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" value="{{data.ID}}" name="close" id="close">Close</button>
+                            </form>
+                        </td>
+                        {% else %}
+                        <td style="background-color: #ffc107 ;">
+                            <span>{{data.State}}</span>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+    </div>

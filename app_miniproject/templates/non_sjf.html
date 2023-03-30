@@ -1,0 +1,87 @@
+{% load static %}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'multi_queue.css' %}">
+    <!-- end Css -->
+    
+    <div id="Multi">
+        <div class="headtable">
+            <div class="names">
+            <h2>SJF Non-Preemptive</h2>
+            </div>
+            <div class="addprocess">
+                <form id="customForm" action="{% url 'preprocess' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" id="submit"  autocomplete="off"  name="add" value="add" class="btn btn-primary">Add Process</button>
+                    <button type="submit" name="reset" value="reset" class="btn btn-danger">reset</button>
+                </form>
+            </div>
+        </div>
+        <hr style="width: 100%;">
+        <table class="table table-bordered" style="background-color: white; width: 100%;">
+            <thead>
+                <tr>
+                <th scope="col">ID</th>
+                <th scope="col">State</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Burst Time</th>
+                <th scope="col">Execue Time</th>
+                <th scope="col">Waitting Time</th>
+                <th scope="col">I/O Time</th>
+                <th scope="col">I/O Waitting</th>       
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for key,data in job_queue.items %}
+                    <tr>    
+                    <td>{{data.ID}}</td>
+                    {% if data.State == 'Runing' %}
+                        <td style="background-color: green;">{{data.State}}</td>
+                    {% elif data.State == 'Waitting' %}
+                        <td style="background-color: #ffc107 ;">{{data.State}}</td>
+                    {% elif data.State == 'Terminate' %}
+                        <td style="background-color: red;">{{data.State}}</td>
+                    {% else %}
+                        <td>{{data.State}}</td>
+                    {% endif %}
+                    <td>{{data.Arrival}}</td>
+                    <td>{{data.Burst}}</td>
+                    <td>{{data.Execue}}</td>
+                    <td>{{data.Waitting}}</td>
+                    <td>{{data.IO}}</td>
+                    <td>{{data.IOW}}</td>
+                    <td style="width: 10%;">
+                    {%  if data.State == 'Runing'%}
+                    <form action="{% url 'terminates' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" id="terminate" value="{{data.ID}}" name="terminate">Terminate</button>
+                    </form>
+                    {% elif data.State != 'Terminate' %}
+                    <button type="submit" class="btn btn-danger" disabled>Terminate</button>
+                    {% else %}
+                    <span> </span>
+                    {% endif %}
+                    </td>
+                    </tr>
+                
+            {% endfor %}
+            
+            </tbody> 
+        </table>
+        <span>Clock {{clock}}</span>
+    
+        <hr>
+        {% if programe_counter != None %}
+        <span>CPU Process : ID {{programe_counter}}</span>
+        {% else %}
+        <span>CPU Process : ID Null</span>
+        {% endif %}
+        <hr>
+        <span>Memory</span> 
+        <progress value="{{bar}}" max="100"></progress>
+        <span style="font-weight:bold">{{bar}}% Max 5 Kbyte</span>
+        
+    </div>
+
+   
